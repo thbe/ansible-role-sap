@@ -1,0 +1,15 @@
+---
+- name: Deploy uuidd packages
+  ansible.builtin.dnf:
+    name:
+      - uuid
+      - uuidd
+    state: present
+
+- name: Enable and start uuidd service
+  ansible.builtin.service:
+    name: uuidd.service
+    state: started
+    enabled: true
+  when:
+    - ansible_facts['virtualization_type'] != "docker"

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service>
+  <short>SAP Webdispatcher</short>
+  <description>This option allows you to use this computer as a SAP Webdispatcher instance. You need SAP Webdispatcher installed for this option to be useful.</description>
+  <port protocol="tcp" port="44300-44330"/><!-- Webdispatcher server, instance number 00 till 30 -->
+</service>

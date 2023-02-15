@@ -1,0 +1,55 @@
+---
+- name: Deploy SAP management tools
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "{{ role_directory }}/rpms"
+    owner: root
+    group: root
+    mode: 0644
+  with_fileglob:
+    - rpms/*.rpm
+  when:
+    - sap_custom|bool
+    - ansible_facts['os_family'] == "RedHat"
+    - ansible_facts['distribution_major_version']|int == 8
+
+- name: Install required SAP package
+  ansible.builtin.dnf:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ sap_packages_requirement }}"
+  when:
+    - ansible_facts['os_family'] == "RedHat"
+    - ansible_facts['distribution_major_version']|int == 8
+
+- name: Install SAP compatibility packages
+  ansible.builtin.dnf:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ sap_packages_compatibility }}"
+  when:
+    - ansible_facts['distribution'] == "RedHat"
+    - ansible_facts['distribution_major_version']|int == 8
+
+- name: Install SAP for Solutions compatibility packages
+  ansible.builtin.dnf:
+    name:
+      - tuned-profiles-sap-hana
+    state: present
+  when:
+    - (rhn_activation_key == "Premium-SAP-RHEL") or
+      (rhn_activation_key == "Developer-RHEL")
+    - ansible_facts['distribution'] == "RedHat"
+    - ansible_facts['distribution_major_version']|int == 8
+
+- name: Install local SAP packages
+  ansible.builtin.dnf:
+    name:
+      - "{{ role_directory }}/rpms/sap-common-1.2-0.el8.noarch.rpm"
+      - "{{ role_directory }}/rpms/sap-sapcar-7.22.1115-0.el8.x86_64.rpm"
+    state: present
+  when:
+    - sap_custom|bool
+    - ansible_facts['os_family'] == "RedHat"
+    - ansible_facts['architecture'] == "x86_64"
+    - ansible_facts['distribution_major_version']|int == 8

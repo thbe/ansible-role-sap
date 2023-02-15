@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service>
+  <short>SAP Business Objects</short>
+  <description>This option allows you to use this computer as a SAP Business Objects instance. You need SAP Business Objects installed for this option to be useful.</description>
+  <port protocol="tcp" port="3500"/><!-- Data Services Job Server -->
+  <port protocol="tcp" port="3510-3530"/><!-- Data Services Job Server (Request Port) -->
+  <port protocol="tcp" port="3690"/><!-- BO SVN Server -->
+  <port protocol="tcp" port="4000"/><!-- Adapter Communication Port -->
+  <port protocol="tcp" port="4001"/><!-- Access Server Communication Port -->
+  <port protocol="tcp" port="4010"/><!-- Metadata Browsing Service Listener Port -->
+  <port protocol="tcp" port="4011"/><!-- Metadata Browsing Service JMX Connector Communication Port -->
+  <port protocol="tcp" port="4012"/><!-- View Data Service Listener Port -->
+  <port protocol="tcp" port="4013"/><!-- View Data Service JMX Connector Communication Port -->
+  <port protocol="tcp" port="5000"/><!-- Data Services Job Server (debug/ optional) -->
+  <port protocol="tcp" port="5001"/><!-- Data Services Job Server (debug/ optional) -->
+  <port protocol="tcp" port="6400"/><!-- BI platform Central Management Server (CMS) -->
+  <port protocol="tcp" port="6401"/><!-- BI platform Central Management Server (CMS) -->
+  <port protocol="tcp" port="6405"/><!-- Web Application Container Server (WACS) -->
+  <port protocol="tcp" port="6410"/><!-- BI platform Central Management Server (SIA) -->
+  <port protocol="tcp" port="6415"/><!-- BI platform Central Management Server (CMS Request Port) -->
+  <port protocol="tcp" port="8080"/><!-- Apache Tomcat Web Application Server (Tomcat) -->
+</service>

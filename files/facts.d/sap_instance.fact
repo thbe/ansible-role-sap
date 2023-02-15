@@ -1,0 +1,23 @@
+#! /usr/bin/env bash
+#
+# Author:       Thomas Bendler <code@thbe.org>
+# Date:         Mon May  9 20:44:28 UTC 2022
+#
+# Release:      0.1.0
+#
+# ChangeLog:    v0.1.0 - Initial release
+#
+# Purpose:      Ansible custom fact to display the SAP instance number list
+#
+
+### Get the SAP instance list from sapservices ###
+if [ -r /usr/sap/sapservices ]; then
+  SAP_INSTANCES=$(grep -E "^\/usr\/sap" /usr/sap/sapservices | cut -d '/' -f5 | sed 's/[A-Z]//g' | sort)
+else
+  exit 0
+fi
+
+### Construct and output JSON array ###
+INSTANCE_LIST=$(for item in ${SAP_INSTANCES[@]}; do echo -ne "$item,"; done)
+INSTANCE_LIST=${INSTANCE_LIST:0:-1}
+echo "{\"sap_instances\" : \"[${INSTANCE_LIST//,/, }]\"}"

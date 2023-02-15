@@ -1,0 +1,51 @@
+SAP:
+{% if sap_instance_sid is defined %}
+  - ABAP Instance SID:         {{ sap_instance_sid }}
+{% endif %}
+{% if sap_instance_java_sid is defined %}
+  - JAVA Instance SID:         {{ sap_instance_java_sid }}
+{% endif %}
+{% if sap_instance_number is defined %}
+  - Instance number:           {{ sap_instance_number }}
+{% endif %}
+{% if sap_ha_hana_instance_number is defined %}
+  - HANA Instance number:      {{ sap_ha_hana_instance_number }}
+{% endif %}
+{% if sap_ha_ascs_instance_number is defined %}
+  - ASCS Instance number:      {{ sap_ha_ascs_instance_number }}
+{% endif %}
+{% if sap_ha_scs_instance_number is defined %}
+  - SCS Instance number:       {{ sap_ha_scs_instance_number }}
+{% endif %}
+{% if sap_ha_aers_instance_number is defined %}
+  - AERS Instance number:      {{ sap_ha_aers_instance_number }}
+{% endif %}
+{% if sap_ha_ers_instance_number is defined %}
+  - ERS Instance number:       {{ sap_ha_ers_instance_number }}
+{% endif %}
+{% if sap_instance_type is defined %}
+  - Instance type:             {{ sap_instance_type }}
+{% endif %}
+{% if sap_instance_product is defined %}
+  - Instance product:          {{ sap_instance_product }}
+{% endif %}
+{% if sap_instance_function is defined %}
+  - Instance function:         {{ sap_instance_function }}
+{% endif %}
+{% if sap_profile is defined %}
+  - Profile:                   {{ sap_profile }}
+{% endif %}
+{% if sap_firewall is defined %}
+  - Firewall:                  {{ sap_firewall }}
+{% endif %}
+{% if sap_alias is defined %}
+  - Alias:                     {{ sap_alias }}
+{% endif %}
+{% if sap_ha is defined %}
+  - HA:                        {{ sap_ha }}
+{% endif %}
+{% if sap_dr is defined %}
+  - DR:                        {{ sap_dr }}
+{% endif %}
+
+{# Intentional empty line #}

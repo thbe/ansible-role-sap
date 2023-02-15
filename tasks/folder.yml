@@ -1,0 +1,16 @@
+---
+- name: Create directory for SAP management
+  ansible.builtin.file:
+    path: "{{ role_directory }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Create directory for local RPMs
+  ansible.builtin.file:
+    path: "{{ role_directory }}/rpms"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755

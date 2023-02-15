@@ -1,0 +1,21 @@
+---
+dependencies:
+  - role: thbe.common
+
+galaxy_info:
+  role_name: sap
+  namespace: thbe
+  author: Thomas Bendler
+  description: This role deploy SAP specific settings/ tools to a freshly installed RHEL machine
+  license: GPL-3.0-only
+  min_ansible_version: "2.9"
+  platforms:
+    - name: EL
+      versions:
+        - "8"
+        - "9"
+  galaxy_tags:
+    - sap
+    - netweaver
+    - hana
+    - rhel

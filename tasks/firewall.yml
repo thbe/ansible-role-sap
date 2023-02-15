@@ -1,0 +1,76 @@
+---
+- name: Deploy custom SAP firewalld services
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: /etc/firewalld/services
+    owner: root
+    group: root
+    mode: 0640
+  with_fileglob:
+    - firewalld/services/*.xml
+  notify: Reload firewalld
+  when:
+    - ansible_facts['virtualization_type'] != "docker"
+
+- name: Wait 5 seconds
+  ansible.builtin.pause:
+    seconds: 5
+
+- name: Enable SAP Baseline ports on local firewall
+  ansible.posix.firewalld:
+    service: sap-baseline
+    permanent: true
+    state: enabled
+  notify: Reload firewalld
+  when:
+    - ansible_facts['virtualization_type'] != "docker"
+
+- name: Enable SAP Netweaver ports on local firewall
+  ansible.posix.firewalld:
+    service: sap-netweaver
+    permanent: true
+    state: enabled
+  notify: Reload firewalld
+  when:
+    - sap_firewall == "netweaver" or sap_firewall == "hana" or sap_firewall == "bods" or sap_firewall == "all"
+    - ansible_facts['virtualization_type'] != "docker"
+
+- name: Enable SAP HANA ports on local firewall
+  ansible.posix.firewalld:
+    service: sap-hana
+    permanent: true
+    state: enabled
+  notify: Reload firewalld
+  when:
+    - sap_firewall == "hana" or sap_firewall == "all"
+    - ansible_facts['virtualization_type'] != "docker"
+
+- name: Enable SAP BODS ports on local firewall
+  ansible.posix.firewalld:
+    service: sap-bods
+    permanent: true
+    state: enabled
+  notify: Reload firewalld
+  when:
+    - sap_firewall == "bods" or sap_firewall == "all"
+    - ansible_facts['virtualization_type'] != "docker"
+
+- name: Enable SAP Router ports on local firewall
+  ansible.posix.firewalld:
+    service: sap-router
+    permanent: true
+    state: enabled
+  notify: Reload firewalld
+  when:
+    - sap_firewall == "router" or sap_firewall == "all"
+    - ansible_facts['virtualization_type'] != "docker"
+
+- name: Enable SAP Web Dispatcher ports on local firewall
+  ansible.posix.firewalld:
+    service: sap-wd
+    permanent: true
+    state: enabled
+  notify: Reload firewalld
+  when:
+    - sap_firewall == "wd" or sap_firewall == "all"
+    - ansible_facts['virtualization_type'] != "docker"

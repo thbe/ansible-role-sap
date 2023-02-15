@@ -1,0 +1,54 @@
+---
+# tasks file for sap
+- name: Deploy custom facts
+  ansible.builtin.import_tasks: facts.yml
+
+- name: Deploy SAP folder structure
+  ansible.builtin.import_tasks: folder.yml
+
+- name: Deploy custom SAP firewall configuration
+  ansible.builtin.import_tasks: firewall.yml
+
+- name: Deploy SAP management scripts
+  ansible.builtin.import_tasks: scripts.yml
+
+- name: Deploy SAP packages
+  ansible.builtin.import_tasks: packages.yml
+
+- name: Deploy uuidd
+  ansible.builtin.import_tasks: uuidd.yml
+
+- name: Deploy ODBC
+  ansible.builtin.import_tasks: odbc.yml
+
+- name: Configure SAP profile
+  ansible.builtin.import_tasks: profile.yml
+  when:
+    - ansible_facts['distribution'] == "RedHat"
+
+- name: Deploy SAP configuration
+  ansible.builtin.import_tasks: sapconf.yml
+  when:
+    - ansible_facts['distribution'] == "RedHat"
+
+- name: Configure tmpfile support
+  ansible.builtin.import_tasks: tmpfile.yml
+
+- name: Configure tmpfs size
+  ansible.builtin.import_tasks: tmpfs.yml
+
+- name: Deploy customized message of the day
+  ansible.builtin.import_tasks: motd.yml
+  when:
+    - sap_motd|bool
+
+- name: Deploy Pacemaker high-availability
+  ansible.builtin.import_tasks: pacemaker.yml
+  when:
+    - sap_ha|bool
+
+- name: Deploy SAP router
+  ansible.builtin.import_tasks: router.yml
+  when:
+    - sap_custom|bool
+    - sap_router|bool

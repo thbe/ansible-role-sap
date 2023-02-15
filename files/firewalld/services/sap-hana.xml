@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service>
+  <short>SAP HANA</short>
+  <description>This option allows you to use this computer as a SAP HANA instance. You need SAP HANA installed for this option to be useful.</description>
+  <port protocol="tcp" port="30001-30050"/><!-- HANA port, instance number 00 -->
+  <port protocol="tcp" port="30101-30150"/><!-- HANA port, instance number 01 -->
+  <port protocol="tcp" port="30201-30250"/><!-- HANA port, instance number 02 -->
+  <port protocol="tcp" port="30301-30350"/><!-- HANA port, instance number 03 -->
+  <port protocol="tcp" port="30401-30450"/><!-- HANA port, instance number 04 -->
+  <port protocol="tcp" port="30501-30550"/><!-- HANA port, instance number 05 -->
+  <port protocol="tcp" port="30601-30650"/><!-- HANA port, instance number 06 -->
+  <port protocol="tcp" port="30701-30750"/><!-- HANA port, instance number 07 -->
+  <port protocol="tcp" port="30801-30850"/><!-- HANA port, instance number 08 -->
+  <port protocol="tcp" port="30901-30950"/><!-- HANA port, instance number 09 -->
+  <port protocol="tcp" port="31001-31050"/><!-- HANA port, instance number 10 -->
+  <port protocol="tcp" port="40001-40050"/><!-- HANA port, instance number 00 -->
+  <port protocol="tcp" port="40101-40150"/><!-- HANA port, instance number 01 -->
+  <port protocol="tcp" port="40201-40250"/><!-- HANA port, instance number 02 -->
+  <port protocol="tcp" port="40301-40350"/><!-- HANA port, instance number 03 -->
+  <port protocol="tcp" port="40401-40450"/><!-- HANA port, instance number 04 -->
+  <port protocol="tcp" port="40501-40550"/><!-- HANA port, instance number 05 -->
+  <port protocol="tcp" port="40601-40650"/><!-- HANA port, instance number 06 -->
+  <port protocol="tcp" port="40701-40750"/><!-- HANA port, instance number 07 -->
+  <port protocol="tcp" port="40801-40850"/><!-- HANA port, instance number 08 -->
+  <port protocol="tcp" port="40901-40950"/><!-- HANA port, instance number 09 -->
+  <port protocol="tcp" port="41001-41050"/><!-- HANA port, instance number 10 -->
+</service>

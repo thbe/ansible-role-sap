@@ -1,0 +1,6 @@
+---
+- name: Ensure ODBC package is absent
+  ansible.builtin.dnf:
+    name:
+      - unixODBC
+    state: present

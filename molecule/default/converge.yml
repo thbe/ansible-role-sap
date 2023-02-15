@@ -1,0 +1,13 @@
+---
+- name: Converge
+  hosts: all
+  gather_facts: true
+  tasks:
+    - name: "Include thbe.common"
+      ansible.builtin.include_role:
+        name: "thbe.common"
+    - name: "Include thbe.sap"
+      ansible.builtin.include_role:
+        name: "thbe.sap"
+      vars:
+        rhn_activation_key: Developer-RHEL

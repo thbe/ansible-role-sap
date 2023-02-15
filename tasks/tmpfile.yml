@@ -1,0 +1,8 @@
+---
+- name: Deploy tmpfile configuration for SAP
+  ansible.builtin.copy:
+    src: tmpfiles.d/sap.conf
+    dest: /etc/tmpfiles.d/sap.conf
+    owner: root
+    group: root
+    mode: 0644

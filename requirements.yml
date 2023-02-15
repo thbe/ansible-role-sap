@@ -1,0 +1,6 @@
+---
+roles:
+  - name: thbe.common
+
+collections:
+  - name: ansible.posix

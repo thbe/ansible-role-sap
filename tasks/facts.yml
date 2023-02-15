@@ -1,0 +1,18 @@
+---
+- name: Create directory for custom facts
+  ansible.builtin.file:
+    path: /etc/ansible/facts.d
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Deploy custom facts
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: /etc/ansible/facts.d
+    owner: root
+    group: root
+    mode: 0755
+  with_fileglob:
+    - facts.d/*.fact

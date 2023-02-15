@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service>
+  <short>SAP Netweaver</short>
+  <description>This option allows you to use this computer as a SAP Netweaver instance. You need SAP Netweaver installed for this option to be useful.</description>
+  <port protocol="tcp" port="3200-3260"/><!-- Dispatcher port, instance number 00 till 30 -->
+  <port protocol="tcp" port="3300-3360"/><!-- Gateway port, instance number 00 till 30 -->
+  <port protocol="tcp" port="3600-3660"/><!-- Message port, instance number 00 till 30 -->
+  <port protocol="tcp" port="3900-3960"/><!-- SSL Message port, instance number 00 till 30 -->
+  <port protocol="tcp" port="4800-4860"/><!-- SSL Gateway port, instance number 00 till 30 -->
+  <port protocol="tcp" port="8000-8060"/><!-- HTTP port, instance number 00 till 30 -->
+  <port protocol="tcp" port="8100-8160"/><!-- HTTP Message port, instance number 00 till 30 -->
+  <port protocol="tcp" port="8200-8260"/><!-- HTTPS port, instance number 00 till 30 -->
+  <port protocol="tcp" port="44300-44360"/><!-- HTTPS port, instance number 00 till 30 -->
+  <port protocol="tcp" port="50501"/><!-- HTTPS port, instance number 05 -->
+  <port protocol="tcp" port="51500"/><!-- HTTP JAVA port -->
+  <port protocol="tcp" port="25000"/><!-- SMTP port -->
+</service>

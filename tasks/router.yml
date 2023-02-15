@@ -1,0 +1,47 @@
+---
+- name: Deploy SAP router packages
+  ansible.builtin.dnf:
+    name:
+      - "{{ role_directory }}/rpms/sap-common-1.2-0.el8.noarch.rpm"
+      - "{{ role_directory }}/rpms/sap-router-7.53.1011-2.el8.x86_64.rpm"
+    state: present
+
+- name: Create PID directory for SAP Router
+  ansible.builtin.file:
+    path: /var/run/sap-router
+    state: directory
+    owner: r99adm
+    group: r99adm
+    mode: 0755
+
+- name: Create empty PID file
+  ansible.builtin.copy:
+    content: ""
+    dest: /var/run/sap-router/sap-router.pid
+    force: false
+    group: r99adm
+    owner: r99adm
+    mode: 0644
+
+- name: Enable and start SAP router service
+  ansible.builtin.service:
+    name: sap-router
+    state: started
+    enabled: true
+
+- name: Deploy central managed SAP Router configuration file
+  ansible.builtin.blockinfile:
+    backup: false
+    path: /opt/sap/R99/profile/saproutetab
+    insertbefore: "ALL to ALL disabled"
+    block: |
+      # Whitelist SAP systems and services
+      {% if sap_router_whitelist is defined %}
+      {% for rule in sap_router_whitelist %}
+      {{ rule }}
+      {% endfor %}
+      {% endif %}
+    owner: root
+    group: root
+    mode: 0644
+  notify: Restart SAP Router

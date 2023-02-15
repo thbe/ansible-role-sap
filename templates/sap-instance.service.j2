@@ -1,0 +1,24 @@
+[Unit]
+Description=Start/ Stop local SAP instance {{ sap_instance_sid }}
+After=autofs.service network.target syslog.target local-fs.target remote-fs.target ntpdate.service ntpd.service centrifydc.service sapinit.service netbackup.service systemd-user-sessions.service systemd-logind.service
+Requires=systemd-logind.service systemd-user-sessions.service autofs.service centrifydc.service netbackup.service
+RequiresMountsFor=/sapmnt/S30 /usr/sap /usr/sap/trans /oracle /home /tmp /var/log /var Wants=network.target sshd.service remote-fs.target autofs.service systemd-logind.service systemd-user-sessions.service
+
+[Service]
+Type=simple
+RemainAfterExit=true
+KillMode=none
+SendSIGKILL=no
+TimeoutSec=5min
+TimeoutStopSec=5min
+EnvironmentFile=/home/{{ sap_instance_sid|lower }}adm/envfile
+ExecStart=/usr/sap/{{ sap_instance_sid }}/SYS/exe/run/startsap
+ExecStop=/usr/sap/{{ sap_instance_sid }}/SYS/exe/run/stopsap
+
+ExecStart=csh -m -c "/usr/sap/{{ sap_instance_sid }}/SYS/exe/run/startsap"
+ExecStop=csh -m -c "/usr/sap/{{ sap_instance_sid }}/SYS/exe/run/stopsap"
+User=s30adm
+Group=sapsys
+
+[Install]
+WantedBy=multi-user.target

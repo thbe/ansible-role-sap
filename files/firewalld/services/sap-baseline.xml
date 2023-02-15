@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service>
+  <short>SAP Baseline</short>
+  <description>This option allows you to use this computer as a SAP instance. You need SAP installed for this option to be useful.</description>
+  <port protocol="tcp" port="1128-1129"/><!-- Host Agent port -->
+  <port protocol="tcp" port="50013-50014"/><!-- Start Service port, instance number 00 -->
+  <port protocol="tcp" port="50113-50114"/><!-- Start Service port, instance number 01 -->
+  <port protocol="tcp" port="50213-50214"/><!-- Start Service port, instance number 02 -->
+  <port protocol="tcp" port="50313-50314"/><!-- Start Service port, instance number 03 -->
+  <port protocol="tcp" port="50413-50414"/><!-- Start Service port, instance number 04 -->
+  <port protocol="tcp" port="50513-50514"/><!-- Start Service port, instance number 05 -->
+  <port protocol="tcp" port="50613-50614"/><!-- Start Service port, instance number 06 -->
+  <port protocol="tcp" port="50713-50714"/><!-- Start Service port, instance number 07 -->
+  <port protocol="tcp" port="50813-50814"/><!-- Start Service port, instance number 08 -->
+  <port protocol="tcp" port="50913-50914"/><!-- Start Service port, instance number 09 -->
+  <port protocol="tcp" port="51013-51014"/><!-- Start Service port, instance number 10 -->
+  <port protocol="tcp" port="51113-51114"/><!-- Start Service port, instance number 11 -->
+  <port protocol="tcp" port="51213-51214"/><!-- Start Service port, instance number 12 -->
+  <port protocol="tcp" port="51313-51314"/><!-- Start Service port, instance number 13 -->
+  <port protocol="tcp" port="51413-51414"/><!-- Start Service port, instance number 14 -->
+  <port protocol="tcp" port="51513-51514"/><!-- Start Service port, instance number 15 -->
+  <port protocol="tcp" port="51613-51614"/><!-- Start Service port, instance number 16 -->
+  <port protocol="tcp" port="51713-51714"/><!-- Start Service port, instance number 17 -->
+  <port protocol="tcp" port="51813-51814"/><!-- Start Service port, instance number 18 -->
+  <port protocol="tcp" port="51913-51914"/><!-- Start Service port, instance number 19 -->
+  <port protocol="tcp" port="52013-52014"/><!-- Start Service port, instance number 20 -->
+  <port protocol="tcp" port="52113-52114"/><!-- Start Service port, instance number 21 -->
+  <port protocol="tcp" port="52213-52214"/><!-- Start Service port, instance number 22 -->
+  <port protocol="tcp" port="52313-52314"/><!-- Start Service port, instance number 23 -->
+  <port protocol="tcp" port="52413-52414"/><!-- Start Service port, instance number 24 -->
+  <port protocol="tcp" port="52513-52514"/><!-- Start Service port, instance number 25 -->
+  <port protocol="tcp" port="52613-52614"/><!-- Start Service port, instance number 26 -->
+  <port protocol="tcp" port="52713-52714"/><!-- Start Service port, instance number 27 -->
+  <port protocol="tcp" port="52813-52814"/><!-- Start Service port, instance number 28 -->
+  <port protocol="tcp" port="52913-52914"/><!-- Start Service port, instance number 29 -->
+  <port protocol="tcp" port="53013-53014"/><!-- Start Service port, instance number 30 -->
+  <port protocol="tcp" port="62000"/><!-- Azure loadbalancer probe port (0), instance number 00 -->
+  <port protocol="tcp" port="62001"/><!-- Azure loadbalancer probe port (0), instance number 01 -->
+  <port protocol="tcp" port="62002"/><!-- Azure loadbalancer probe port (0), instance number 02 -->
+  <port protocol="tcp" port="62003"/><!-- Azure loadbalancer probe port (0), instance number 03 -->
+  <port protocol="tcp" port="62004"/><!-- Azure loadbalancer probe port (0), instance number 04 -->
+  <port protocol="tcp" port="62005"/><!-- Azure loadbalancer probe port (0), instance number 05 -->
+  <port protocol="tcp" port="62010"/><!-- Azure loadbalancer probe port (0), instance number 10 -->
+  <port protocol="tcp" port="62011"/><!-- Azure loadbalancer probe port (0), instance number 11 -->
+  <port protocol="tcp" port="62050"/><!-- Azure loadbalancer probe port (0), instance number 50 -->
+  <port protocol="tcp" port="62051"/><!-- Azure loadbalancer probe port (0), instance number 51 -->
+  <port protocol="tcp" port="62052"/><!-- Azure loadbalancer probe port (0), instance number 52 -->
+  <port protocol="tcp" port="62053"/><!-- Azure loadbalancer probe port (0), instance number 53 -->
+  <port protocol="tcp" port="62100"/><!-- Azure loadbalancer probe port (1), instance number 00 -->
+  <port protocol="tcp" port="62101"/><!-- Azure loadbalancer probe port (1), instance number 01 -->
+  <port protocol="tcp" port="62102"/><!-- Azure loadbalancer probe port (1), instance number 02 -->
+  <port protocol="tcp" port="62103"/><!-- Azure loadbalancer probe port (1), instance number 03 -->
+  <port protocol="tcp" port="62104"/><!-- Azure loadbalancer probe port (1), instance number 04 -->
+  <port protocol="tcp" port="62105"/><!-- Azure loadbalancer probe port (1), instance number 05 -->
+  <port protocol="tcp" port="62110"/><!-- Azure loadbalancer probe port (1), instance number 10 -->
+  <port protocol="tcp" port="62111"/><!-- Azure loadbalancer probe port (1), instance number 11 -->
+  <port protocol="tcp" port="62150"/><!-- Azure loadbalancer probe port (1), instance number 50 -->
+  <port protocol="tcp" port="62151"/><!-- Azure loadbalancer probe port (1), instance number 51 -->
+  <port protocol="tcp" port="62152"/><!-- Azure loadbalancer probe port (1), instance number 52 -->
+  <port protocol="tcp" port="62153"/><!-- Azure loadbalancer probe port (1), instance number 53 -->
+  <port protocol="tcp" port="62200"/><!-- Azure loadbalancer probe port (2), instance number 00 -->
+  <port protocol="tcp" port="62201"/><!-- Azure loadbalancer probe port (2), instance number 01 -->
+  <port protocol="tcp" port="62202"/><!-- Azure loadbalancer probe port (2), instance number 02 -->
+  <port protocol="tcp" port="62203"/><!-- Azure loadbalancer probe port (2), instance number 03 -->
+  <port protocol="tcp" port="62204"/><!-- Azure loadbalancer probe port (2), instance number 04 -->
+  <port protocol="tcp" port="62205"/><!-- Azure loadbalancer probe port (2), instance number 05 -->
+  <port protocol="tcp" port="62210"/><!-- Azure loadbalancer probe port (2), instance number 10 -->
+  <port protocol="tcp" port="62211"/><!-- Azure loadbalancer probe port (2), instance number 11 -->
+  <port protocol="tcp" port="62250"/><!-- Azure loadbalancer probe port (2), instance number 50 -->
+  <port protocol="tcp" port="62251"/><!-- Azure loadbalancer probe port (2), instance number 51 -->
+  <port protocol="tcp" port="62252"/><!-- Azure loadbalancer probe port (2), instance number 52 -->
+  <port protocol="tcp" port="62253"/><!-- Azure loadbalancer probe port (2), instance number 53 -->
+  <port protocol="tcp" port="62500"/><!-- Azure loadbalancer probe port (5), instance number 00 -->
+  <port protocol="tcp" port="62501"/><!-- Azure loadbalancer probe port (5), instance number 01 -->
+  <port protocol="tcp" port="62502"/><!-- Azure loadbalancer probe port (5), instance number 02 -->
+  <port protocol="tcp" port="62503"/><!-- Azure loadbalancer probe port (5), instance number 03 -->
+  <port protocol="tcp" port="62504"/><!-- Azure loadbalancer probe port (5), instance number 04 -->
+  <port protocol="tcp" port="62505"/><!-- Azure loadbalancer probe port (5), instance number 05 -->
+  <port protocol="tcp" port="62510"/><!-- Azure loadbalancer probe port (5), instance number 10 -->
+  <port protocol="tcp" port="62511"/><!-- Azure loadbalancer probe port (5), instance number 11 -->
+  <port protocol="tcp" port="62550"/><!-- Azure loadbalancer probe port (5), instance number 50 -->
+  <port protocol="tcp" port="62551"/><!-- Azure loadbalancer probe port (5), instance number 51 -->
+  <port protocol="tcp" port="62552"/><!-- Azure loadbalancer probe port (5), instance number 52 -->
+  <port protocol="tcp" port="62553"/><!-- Azure loadbalancer probe port (5), instance number 53 -->
+  <port protocol="tcp" port="64999"/><!-- SAP JAVA DAA instance -->
+</service>

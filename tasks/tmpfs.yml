@@ -1,0 +1,8 @@
+---
+- name: Set size of tmpfs to 15gb
+  ansible.posix.mount:
+    path: /dev/shm
+    src: tmpfs
+    fstype: tmpfs
+    opts: "size=15g"
+    state: present

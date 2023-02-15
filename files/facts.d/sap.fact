@@ -1,0 +1,56 @@
+#! /usr/bin/env python3
+
+"""_summary_
+Author:       Thomas Bendler <code@thbe.org>
+Date:         Sat Jan 21 15:27:05 CET 2023
+
+Release:      0.1.0
+
+ChangeLog:    v0.1.0 - Initial release
+
+Purpose:      Ansible custom facts to display local SAP configuration
+"""
+
+import json
+import psutil
+
+
+class Sap:
+    '''
+     The Sap object contains info about local SAP configuration
+
+     Args:
+         arg (str): The arg is used for...
+         *args: The variable arguments are used for...
+         **kwargs: The keyword arguments are used for...
+
+     Attributes:
+         arg (str): This is where we store arg,
+     '''
+
+    def __init__(self, arg, *args, **kwargs):
+        self.arg = arg
+
+
+services = []
+with open("/usr/sap/sapservices", "r") as f:
+    for line in f:
+        if line.startswith("#"):
+            continue
+        parts = line.strip().split("_")
+        sid, inst, product = parts[0], parts[1], parts[2]
+        services.append({"sid": sid, "inst": inst, "product": product})
+print(json.dumps(services, indent=4))
+
+
+def main():
+    json_processes = []
+
+    for proc in psutil.process_iter():
+        json_processes.append(proc.as_dict(attrs=['pid', 'name', 'username']))
+
+    print(json.dumps(json_processes))
+
+
+if __name__ == '__main__':
+    main()

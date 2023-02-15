@@ -1,0 +1,9 @@
+---
+# handlers file for sap
+- name: Reload firewalld
+  ansible.builtin.command: firewall-cmd --reload
+
+- name: Restart SAP Router
+  ansible.builtin.service:
+    name: sap-router.service
+    state: restarted

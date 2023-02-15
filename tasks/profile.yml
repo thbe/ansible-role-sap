@@ -1,0 +1,20 @@
+---
+- name: Get SAP Netweaver profile
+  ansible.builtin.shell:
+    cmd: "/usr/sbin/tuned-adm active || /bin/true"
+  register: sap_profile_active
+  changed_when: sap_profile_active.rc != 0
+
+- name: Set SAP Netweaver profile
+  ansible.builtin.command:
+    cmd: "/usr/sbin/tuned-adm profile sap-netweaver"
+  when:
+    - sap_profile == "sap-netweaver"
+    - "sap_profile_active.stdout.find('sap-netweaver') == -1"
+
+- name: Set SAP HANA profile
+  ansible.builtin.command:
+    cmd: "/usr/sbin/tuned-adm profile sap-hana"
+  when:
+    - sap_profile == "sap-hana"
+    - "sap_profile_active.stdout.find('sap-hana') == -1"

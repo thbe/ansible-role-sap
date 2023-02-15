@@ -1,0 +1,11 @@
+---
+- name: Update Ansible facts
+  ansible.builtin.setup:
+
+- name: Deploy motd snippet with SAP information to /etc/motd.d
+  ansible.builtin.template:
+    src: motd_sap.j2
+    dest: /etc/motd.d/sap_information
+    owner: root
+    group: root
+    mode: 0644

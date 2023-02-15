@@ -1,0 +1,8 @@
+---
+- name: Execute sapconf
+  ansible.builtin.shell: "/usr/bin/sapconf -q && touch {{ role_directory }}/hana_conf"
+  args:
+    creates: "{{ role_directory }}/hana_conf"
+  when:
+    - ansible_facts['distribution'] == "RedHat"
+    - ansible_facts['distribution_major_version']|int == 8

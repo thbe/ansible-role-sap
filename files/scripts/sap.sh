@@ -21,9 +21,9 @@ SAP_SERVICES="/usr/sap/sapservices"
 
 ### Determine if SAP services are runnning ###
 if [ "$(ps aux | grep "[s]apstartsrv" | grep -v hostctrl | wc -l)" -eq 0 ]; then
-  SAP_SERVICES_ACTIVE="X"
-else
   SAP_SERVICES_ACTIVE="O"
+else
+  SAP_SERVICES_ACTIVE="X"
 fi
 
 ### Get instance variables ###

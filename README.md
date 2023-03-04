@@ -19,7 +19,7 @@ This role does not have any requirements.
 * **sap_ha** - Enable Pacemaker cluster (default: false)
 * **sap_ha_stonith** - Enable Pacemaker stonith device (default: true)
 * **sap_anf** - Enable Azure Netapp (default: false)
-* **sap_dr** - Enable SAP Desaster Recovery (default: false)
+* **sap_dr** - Enable SAP Disaster Recovery (default: false)
 * **sap_router** - Enable SAP Router (default: false)
 * **rhn_organization_id** - Organizational ID to register at RHN (default: 'unset')
 * **rhn_activation_key** - activation key to register at RHN (default: 'unset')

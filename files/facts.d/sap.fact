@@ -24,27 +24,31 @@ class Sap:
      '''
 
     def __init__(self):
-        self.instances = []
+        self.facts = []
 
-    def get_instances(self):
+    def get_facts(self):
         services = []
-        with open("/usr/sap/sapservices", "r") as f:
-            for line in f:
-                if line.startswith("#"):
-                    continue
-                parts = line.strip().split("_")
-                sid, inst, product = parts[0], parts[1], parts[2]
-                services.append({"sid": sid, "inst": inst, "product": product})
-                self.instances = json.dumps(services, indent=4)
-
-    def print_instances(self):
-        return self.instances
+        profile_identifier = "pf="
+        with open("/usr/sap/sapservices", "r") as fp:
+            Lines = fp.readlines()
+            for line in Lines:
+                if profile_identifier in line:
+                    profile_name = line.split("=")[1].split(" ")[
+                        0].split("/")[6]
+                    profile = profile_name.strip().split("_")
+                    sid = profile[0]
+                    product = profile[1].rstrip('0123456789')
+                    inst = profile[1][len(product):]
+                    services.append(
+                        {"sid": sid, "inst": inst, "product": product})
+        self.facts = json.dumps(services, indent=4)
+        return self
 
 
 def main():
     sap = Sap()
-    sap.get_instances()
-    print(sap.print_instances)
+    sap.get_facts()
+    print(sap.facts)
 
 
 if __name__ == '__main__':

@@ -78,7 +78,7 @@ esac
 
 if [ ${SCRIPT_ACTION} == "start" ]; then
   echo "Check if SAP services are started"
-  if [ ${SAP_SERVICES_ACTIVE} == "X" ]; then
+  if [ ${SAP_SERVICES_ACTIVE} == "O" ]; then
     echo "Start SAP services"
     /usr/sap/sapservices
   fi

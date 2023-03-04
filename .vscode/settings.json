@@ -2,6 +2,7 @@
     "cSpell.words": [
         "ASCS",
         "baseos",
+        "Bendler",
         "blockinfile",
         "cairo",
         "colocation",
@@ -45,6 +46,7 @@
         "rsyslog",
         "sapcar",
         "saproutetab",
+        "sapservices",
         "scaleout",
         "stonith",
         "sunrpc",

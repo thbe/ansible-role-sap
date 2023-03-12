@@ -1,6 +1,6 @@
 # Ansible Role thbe-sap
 
-[![Ansible Lint](https://github.com/thbe/ansible-role-sap/actions/workflows/ansible-lint.yml/badge.svg)](https://github.com/thbe/ansible-role-sap/actions/workflows/ansible-lint.yml)[![Molecule](https://github.com/thbe/ansible-role-sap/actions/workflows/molecule.yml/badge.svg)](https://github.com/thbe/ansible-role-sap/actions/workflows/molecule.yml)
+[![Molecule](https://github.com/thbe/ansible-role-sap/actions/workflows/molecule.yml/badge.svg)](https://github.com/thbe/ansible-role-sap/actions/workflows/molecule.yml)
 
 This role provides the basic settings, packages, tweaks and so on and so forth to operate an SAP system.
 

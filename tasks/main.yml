@@ -12,6 +12,13 @@
 - name: Deploy SAP management scripts
   ansible.builtin.import_tasks: scripts.yml
 
+- name: Add SAP repositories
+  ansible.builtin.import_tasks: repositories.yml
+  when:
+    - ansible_facts['distribution'] == "RedHat"
+    - (ansible_facts['virtualization_type'] != "container") and
+      (ansible_facts['virtualization_type'] != "docker")
+
 - name: Deploy SAP packages
   ansible.builtin.import_tasks: packages.yml
 

@@ -1,0 +1,18 @@
+---
+- name: Enable RHEL 8 SAP repositories
+  community.general.rhsm_repository:
+    name: "{{ item }}"
+    state: enabled
+  loop: "{{ rhel_repos_8_sap }}"
+  when:
+    - rhel_repos_8_sap is defined
+    - ansible_facts['distribution_major_version']|int == 8
+
+- name: Enable RHEL 9 SAP repositories
+  community.general.rhsm_repository:
+    name: "{{ item }}"
+    state: enabled
+  loop: "{{ rhel_repos_9_sap }}"
+  when:
+    - rhel_repos_9_sap is defined
+    - ansible_facts['distribution_major_version']|int == 9

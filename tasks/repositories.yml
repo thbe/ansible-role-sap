@@ -6,6 +6,9 @@
   loop: "{{ rhel_repos_8_sap }}"
   when:
     - rhel_repos_8_sap is defined
+    - (rhn_activation_key == "Standard-SAP-RHEL") or
+      (rhn_activation_key == "Premium-SAP-RHEL") or
+      (rhn_activation_key == "Developer-RHEL")
     - ansible_facts['distribution_major_version']|int == 8
 
 - name: Enable RHEL 9 SAP repositories
@@ -15,4 +18,7 @@
   loop: "{{ rhel_repos_9_sap }}"
   when:
     - rhel_repos_9_sap is defined
+    - (rhn_activation_key == "Standard-SAP-RHEL") or
+      (rhn_activation_key == "Premium-SAP-RHEL") or
+      (rhn_activation_key == "Developer-RHEL")
     - ansible_facts['distribution_major_version']|int == 9

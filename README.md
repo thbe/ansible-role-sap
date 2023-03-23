@@ -24,11 +24,8 @@ This role does not have any requirements.
 * **rhn_organization_id** - Organizational ID to register at RHN (default: 'unset')
 * **rhn_activation_key** - activation key to register at RHN (default: 'unset')
 * **rhn_pool_id** - Pool ID to be consumed (default: 'unset')
-* **rhel_repos_8_e4s** - List of RHEL repositories with extended support
-* **rhel_repos_8_sap_latest** - List of SAP repositories
-* **rhel_repos_8_sap_e4s** - List of SAP repositories with extended support
-* **rhel_repos_8_sap_solutions_latest** - List of SAP solution repositories
-* **rhel_repos_8_sap_solutions_e4s** - List of SAP solution repositories with extended support
+* **rhel_repos_8_sap** - List of RHEL SAP repositories
+* **rhel_repos_9_sap** - List of RHEL SAP repositories
 * **sap_packages_requirement** - List of SAP required packages
 * **sap_packages_compatibility** - List of SAP compatibility packages
 

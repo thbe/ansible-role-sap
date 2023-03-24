@@ -1,14 +1,17 @@
 {
     "cSpell.words": [
         "activationkey",
+        "almalinux",
         "ASCS",
         "baseos",
         "Bendler",
         "blockinfile",
         "cairo",
+        "cgroupns",
         "colocation",
         "compat",
         "configfile",
+        "containerd",
         "defaultv",
         "endfor",
         "fileglob",

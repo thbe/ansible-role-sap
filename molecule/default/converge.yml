@@ -10,4 +10,11 @@
       ansible.builtin.include_role:
         name: "thbe.sap"
       vars:
+        sap_profile: "sap-hana"
+        sap_firewall: "hana"
+        sap_alias: "sapts4"
+        sap_instance_type: "DB"
+        sap_instance_product: "HANA"
+        sap_instance_function: "CFIN"
+        sap_instance_sid: "TS4"
         rhn_activation_key: Developer-RHEL

@@ -11,6 +11,7 @@ ChangeLog:    v0.1.0 - Initial release
 Purpose:      Ansible custom facts to display local SAP configuration
 """
 
+import os.path
 import json
 
 
@@ -27,20 +28,22 @@ class Sap:
         self.facts = []
 
     def get_facts(self):
+        sap_services = "/usr/sap/sapservices"
         services = []
         profile_identifier = "pf="
-        with open("/usr/sap/sapservices", "r") as fp:
-            Lines = fp.readlines()
-            for line in Lines:
-                if profile_identifier in line:
-                    profile_name = line.split("=")[1].split(" ")[
-                        0].split("/")[6]
-                    profile = profile_name.strip().split("_")
-                    sid = profile[0]
-                    product = profile[1].rstrip('0123456789')
-                    inst = profile[1][len(product):]
-                    services.append(
-                        {"sid": sid, "inst": inst, "product": product})
+        if os.path.exists(sap_services):
+            with open(sap_services, "r") as fp:
+                Lines = fp.readlines()
+                for line in Lines:
+                    if profile_identifier in line:
+                        profile_name = line.split("=")[1].split(" ")[
+                            0].split("/")[6]
+                        profile = profile_name.strip().split("_")
+                        sid = profile[0]
+                        product = profile[1].rstrip('0123456789')
+                        inst = profile[1][len(product):]
+                        services.append(
+                            {"sid": sid, "inst": inst, "product": product})
         self.facts = json.dumps(services, indent=4)
         return self
 

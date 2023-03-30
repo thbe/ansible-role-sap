@@ -12,9 +12,21 @@
 - name: Deploy SAP management scripts
   ansible.builtin.import_tasks: scripts.yml
 
+- name: Activate base RHEL SAP subscriptions
+  ansible.builtin.import_tasks: subscription.yml
+  when:
+    - (ansible_facts['virtualization_type'] != "container") and
+      (ansible_facts['virtualization_type'] != "docker")
+    - ansible_facts['distribution'] == "RedHat"
+    - rhn_manage|bool
+    - rhn_organization_id != "unset"
+    - rhn_activation_key != "unset"
+    - rhn_pool_id != "unset"
+
 - name: Add SAP repositories
   ansible.builtin.import_tasks: repositories.yml
   when:
+    - rhn_manage|bool
     - ansible_facts['distribution'] == "RedHat"
     - (ansible_facts['virtualization_type'] != "container") and
       (ansible_facts['virtualization_type'] != "docker")

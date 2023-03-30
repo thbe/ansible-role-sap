@@ -1,7 +1,13 @@
 ---
 # handlers file for sap
 - name: Reload firewalld
-  ansible.builtin.command: firewall-cmd --reload
+  ansible.builtin.command:
+    cmd: firewall-cmd --reload
+  register: firewall_reload
+  changed_when: firewall_reload.rc != 0
+  when:
+    - (ansible_facts['virtualization_type'] != "container") and
+      (ansible_facts['virtualization_type'] != "docker")
 
 - name: Restart SAP Router
   ansible.builtin.service:

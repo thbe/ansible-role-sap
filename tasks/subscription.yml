@@ -11,8 +11,10 @@
       service_level_agreement: "Self-Support"
       sync: true
   when:
+    - ansible_facts['distribution'] == "RedHat"
     - rhn_activation_key == "Developer-RHEL"
-    - ansible_facts['os_family'] == "RedHat"
+    - (rhn_organization_id != "unset") or
+      (rhn_pool_id != "unset")
 
 - name: Register in RHN with RHEL standard subscription
   community.general.redhat_subscription:
@@ -26,8 +28,10 @@
       service_level_agreement: "Standard"
       sync: true
   when:
+    - ansible_facts['distribution'] == "RedHat"
     - rhn_activation_key == "Standard-RHEL"
-    - ansible_facts['os_family'] == "RedHat"
+    - (rhn_organization_id != "unset") or
+      (rhn_pool_id != "unset")
 
 - name: Register in RHN with RHEL SAP standard subscription
   community.general.redhat_subscription:
@@ -41,8 +45,10 @@
       service_level_agreement: "Standard"
       sync: true
   when:
+    - ansible_facts['distribution'] == "RedHat"
     - rhn_activation_key == "Standard-SAP-RHEL"
-    - ansible_facts['os_family'] == "RedHat"
+    - (rhn_organization_id != "unset") or
+      (rhn_pool_id != "unset")
 
 - name: Register in RHN with RHEL SAP premium subscription
   community.general.redhat_subscription:
@@ -56,5 +62,7 @@
       service_level_agreement: "Premium"
       sync: true
   when:
+    - ansible_facts['distribution'] == "RedHat"
     - rhn_activation_key == "Premium-SAP-RHEL"
-    - ansible_facts['os_family'] == "RedHat"
+    - (rhn_organization_id != "unset") or
+      (rhn_pool_id != "unset")

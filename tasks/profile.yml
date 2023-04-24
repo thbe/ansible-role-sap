@@ -3,7 +3,8 @@
   ansible.builtin.shell:
     cmd: "/usr/sbin/tuned-adm active || /bin/true"
   register: sap_profile_active
-  changed_when: sap_profile_active.rc != 0
+  changed_when: false
+  failed_when: sap_profile_active.rc != 0
 
 - name: Set SAP Netweaver profile
   ansible.builtin.command:

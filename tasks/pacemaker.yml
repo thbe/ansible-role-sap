@@ -1,25 +1,4 @@
 ---
-- name: Deploy Pacemaker high-availability packages
-  ansible.builtin.dnf:
-    name:
-      - pcs
-      - pacemaker
-      - sap-cluster-connector
-      - fence-agents-all
-      - fence-agents-azure-arm
-      - fence-agents-kdump
-      - nmap-ncat
-    state: present
-
-- name: Deploy SAP Netweaver resource agent
-  ansible.builtin.dnf:
-    name:
-      - resource-agents
-      - resource-agents-sap
-    state: present
-  when:
-    - sap_instance_type == "ASCS"
-
 - name: Ensure SAP HANA resource agents are not installed for SAP Netweaver
   ansible.builtin.dnf:
     name:
@@ -29,15 +8,6 @@
   when:
     - sap_instance_type == "ASCS"
 
-- name: Deploy SAP HANA resource agent
-  ansible.builtin.dnf:
-    name:
-      - resource-agents
-      - resource-agents-sap-hana
-    state: present
-  when:
-    - sap_instance_product == "HANA"
-
 - name: Ensure SAP HANA scale out resource agents are not installed for SAP HANA
   ansible.builtin.dnf:
     name:
@@ -46,16 +16,27 @@
   when:
     - sap_instance_product == "HANA"
 
-- name: Enable and start Pacemaker high-availability service
-  ansible.builtin.service:
-    name: pcsd.service
-    state: started
-    enabled: true
+- name: Deploy Pacemaker and SAP high-availability packages
+  ansible.builtin.dnf:
+    name:
+      - pcs
+      - pacemaker
+      - sap-cluster-connector
+      - fence-agents-all
+      - fence-agents-azure-arm
+      - fence-agents-kdump
+      - nmap-ncat
+      - resource-agents
+      - resource-agents-sap
+    state: present
 
-- name: Set the password for hacluster
-  ansible.builtin.user:
-    name: "hacluster"
-    password: "{{ sap_ha_password | password_hash('sha512') }}"
+- name: Deploy SAP HANA resource agent
+  ansible.builtin.dnf:
+    name:
+      - resource-agents-sap-hana
+    state: present
+  when:
+    - sap_instance_product == "HANA"
 
 - name: Enable high-availability on local firewall
   ansible.posix.firewalld:
@@ -65,37 +46,25 @@
     state: enabled
   notify: Reload firewalld
 
+- name: Enable and start Pacemaker high-availability service
+  ansible.builtin.service:
+    name: pcsd.service
+    state: started
+    enabled: true
+
 - name: Capturing status for the Pacemaker high-availability cluster
   ansible.builtin.shell:
     cmd: "/usr/sbin/pcs status || /bin/true"
   register: sap_ha_cluster_status
-  changed_when: sap_ha_cluster_status.rc != 0
+  changed_when: false
+  failed_when: sap_ha_cluster_status.rc != 0
   when:
     - ansible_facts['fqdn'] == sap_ha_primary
 
-- name: Capturing properties for the Pacemaker high-availability cluster
-  ansible.builtin.shell:
-    cmd: "/usr/sbin/pcs property config --all || /bin/true"
-  register: sap_ha_cluster_properties
-  changed_when: sap_ha_cluster_properties.rc != 0
-  when:
-    - ansible_facts['fqdn'] == sap_ha_primary
-
-- name: Capturing resources for the Pacemaker high-availability cluster
-  ansible.builtin.shell:
-    cmd: "/usr/sbin/pcs resource config || /bin/true"
-  register: sap_ha_cluster_resources
-  changed_when: sap_ha_cluster_resources.rc != 0
-  when:
-    - ansible_facts['fqdn'] == sap_ha_primary
-
-- name: Capturing constraints for the Pacemaker high-availability cluster
-  ansible.builtin.shell:
-    cmd: "/usr/sbin/pcs constraint config --all || /bin/true"
-  register: sap_ha_cluster_constraints
-  changed_when: sap_ha_cluster_constraints.rc != 0
-  when:
-    - ansible_facts['fqdn'] == sap_ha_primary
+- name: Set the password for hacluster
+  ansible.builtin.user:
+    name: "hacluster"
+    password: "{{ sap_ha_password | password_hash('sha512') }}"
 
 - name: Authenticate primary cluster node
   ansible.builtin.command:
@@ -133,6 +102,15 @@
     - ansible_facts['fqdn'] == sap_ha_primary
     - "sap_ha_cluster_status.stdout.find('pacemaker: active/enabled') == -1"
 
+- name: Capturing properties for the Pacemaker high-availability cluster
+  ansible.builtin.shell:
+    cmd: "/usr/sbin/pcs property config --all || /bin/true"
+  register: sap_ha_cluster_properties
+  changed_when: false
+  failed_when: sap_ha_cluster_properties.rc != 0
+  when:
+    - ansible_facts['fqdn'] == sap_ha_primary
+
 - name: Disable stonith for the the Pacemaker high-availability cluster
   ansible.builtin.command:
     cmd: /usr/sbin/pcs property set stonith-enabled=false
@@ -151,3 +129,21 @@
   when:
     - ansible_facts['fqdn'] == sap_ha_primary
     - "sap_ha_cluster_properties.stdout.find('concurrent-fencing: false') != -1"
+
+- name: Capturing resources for the Pacemaker high-availability cluster
+  ansible.builtin.shell:
+    cmd: "/usr/sbin/pcs resource config || /bin/true"
+  register: sap_ha_cluster_resources
+  changed_when: false
+  failed_when: sap_ha_cluster_resources.rc != 0
+  when:
+    - ansible_facts['fqdn'] == sap_ha_primary
+
+- name: Capturing constraints for the Pacemaker high-availability cluster
+  ansible.builtin.shell:
+    cmd: "/usr/sbin/pcs constraint config --all || /bin/true"
+  register: sap_ha_cluster_constraints
+  changed_when: false
+  failed_when: sap_ha_cluster_constraints.rc != 0
+  when:
+    - ansible_facts['fqdn'] == sap_ha_primary

@@ -51,6 +51,7 @@
         "pcsd",
         "posix",
         "psmisc",
+        "redhat",
         "rhel",
         "rhsm",
         "rockylinux",

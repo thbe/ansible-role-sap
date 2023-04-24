@@ -29,7 +29,6 @@ This role does not have any requirements.
 * **sap_packages_requirement** - List of SAP required packages
 * **sap_packages_compatibility** - List of SAP compatibility packages
 
-
 ## Dependencies
 
 This role depends on:

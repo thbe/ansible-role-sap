@@ -3,6 +3,7 @@
   <short>SAP Baseline</short>
   <description>This option allows you to use this computer as a SAP instance. You need SAP installed for this option to be useful.</description>
   <port protocol="tcp" port="1128-1129"/><!-- Host Agent port -->
+  <port protocol="tcp" port="4237"/><!-- SWPM port -->
   <port protocol="tcp" port="50013-50014"/><!-- Start Service port, instance number 00 -->
   <port protocol="tcp" port="50113-50114"/><!-- Start Service port, instance number 01 -->
   <port protocol="tcp" port="50213-50214"/><!-- Start Service port, instance number 02 -->

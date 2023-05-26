@@ -1,17 +1,18 @@
 #! /usr/bin/env bash
 #
 # Author:       Thomas Bendler <code@thbe.org>
-# Date:         Tue Feb 14 12:45:53 CET 2023
+# Date:         Fri May 26 11:46:38 CEST 2023
 #
-# Note:         To debug the script change the shebang to: /usr/bin/env bash -vx
+# Note:         To debug the script change the shebang to: /usr/bin/env -S bash -vx
 #
 # Prerequisite: This release needs a shell that could handle functions.
 #               If shell is not able to handle functions, remove the
 #               error section.
 #
-# Release:      0.9.0
+# Release:      0.9.2
 #
 # ChangeLog:    v0.9.0 - Initial release
+#               v0.9.2 - Stabilize postional parameters
 #
 # Purpose:      Control the local SAP instance
 #
@@ -29,9 +30,9 @@ fi
 ### Get instance variables ###
 HDB_ACTIVE="O"; ASCS_ACTIVE="O"; DIALOG_ACTIVE="O"
 if [ -f ${SAP_SERVICES} ]; then
-  SAP_SERVICES_ITEM=$(cat ${SAP_SERVICES} | grep sapstartsrv | grep -v DAA)
+  SAP_SERVICES_ITEM=$(cat ${SAP_SERVICES} | grep sapstartsrv | grep -v DAA | sed -e 's/.*pf=//g')
   while read -r instance; do
-    SAP_INSTANCE_ITEM=$(echo ${instance} | cut -d '/' -f 5)
+    SAP_INSTANCE_ITEM=$(echo ${instance} | cut -d '_' -f 2)
     case ${SAP_INSTANCE_ITEM} in
       HDB*  ) SAP_INSTANCE_TYPE="DB";;
       ASCS* ) SAP_INSTANCE_TYPE="CI";;
@@ -42,28 +43,28 @@ if [ -f ${SAP_SERVICES} ]; then
     ### Set SAP HANA database variables ###
     if [ ${SAP_INSTANCE_TYPE} == "DB" ]; then
       HDB_ACTIVE="X"
-      HDB_SIDADM=$(echo ${instance} | grep sapstartsrv | cut -d ' ' -f 5)
-      HDB_PATH=$(echo ${instance} | grep sapstartsrv | cut -d '/' -f 1,2,3,4,5)
-      HDB_INSTANCE_STRING=$(echo ${instance} | grep sapstartsrv | cut -d '/' -f 5)
+      HDB_INSTANCE_STRING=$SAP_INSTANCE_ITEM
       HDB_INSTANCE_NR=${HDB_INSTANCE_STRING: -2}
+      HDB_SIDADM=$(echo ${instance} | sed -e 's/.*-u //g')
+      HDB_PATH=$(echo ${instance} | cut -d '/' -f 1,2,3,4)/$HDB_INSTANCE_STRING
     fi
 
     ### Set SAP ASCS instance variables ###
     if [ ${SAP_INSTANCE_TYPE} == "CI" ]; then
       ASCS_ACTIVE="X"
-      ASCS_SIDADM=$(echo ${instance} | grep sapstartsrv | cut -d ' ' -f 5)
-      ASCS_PATH=$(echo ${instance} | grep sapstartsrv | cut -d '/' -f 1,2,3,4,5)
-      ASCS_INSTANCE_STRING=$(echo ${instance} | grep sapstartsrv | cut -d '/' -f 5)
+      ASCS_INSTANCE_STRING=$SAP_INSTANCE_ITEM
       ASCS_INSTANCE_NR=${ASCS_INSTANCE_STRING: -2}
+      ASCS_SIDADM=$(echo ${instance} | sed -e 's/.*-u //g')
+      ASCS_PATH=$(echo ${instance} | cut -d '/' -f 1,2,3,4)/$ASCS_INSTANCE_STRING
     fi
 
     ### Set SAP dialog instance variables ###
     if [ ${SAP_INSTANCE_TYPE} == "APP" ]; then
       DIALOG_ACTIVE="X"
-      DIALOG_SIDADM=$(echo ${instance} | grep sapstartsrv | cut -d ' ' -f 5)
-      DIALOG_PATH=$(echo ${instance} | grep sapstartsrv | cut -d '/' -f 1,2,3,4,5)
-      DIALOG_INSTANCE_STRING=$(echo ${instance} | grep sapstartsrv | cut -d '/' -f 5)
+      DIALOG_INSTANCE_STRING=$SAP_INSTANCE_ITEM
       DIALOG_INSTANCE_NR=${DIALOG_INSTANCE_STRING: -2}
+      DIALOG_SIDADM=$(echo ${instance} | sed -e 's/.*-u //g')
+      DIALOG_PATH=$(echo ${instance} | cut -d '/' -f 1,2,3,4)/$DIALOG_INSTANCE_STRING
     fi
   done <<< "${SAP_SERVICES_ITEM}"
 fi

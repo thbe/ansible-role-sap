@@ -20,8 +20,7 @@
     - rhel_repos_8_sap_e4s is defined
     - rhn_repo_e4s|bool
     - (rhn_activation_key == "Standard-SAP-RHEL") or
-      (rhn_activation_key == "Premium-SAP-RHEL") or
-      (rhn_activation_key == "Developer-RHEL")
+      (rhn_activation_key == "Premium-SAP-RHEL")
     - ansible_facts['distribution_major_version']|int == 8
 
 - name: Enable RHEL 8 SAP EUS repositories
@@ -33,8 +32,7 @@
     - rhel_repos_8_sap_eus is defined
     - rhn_repo_eus|bool
     - (rhn_activation_key == "Standard-SAP-RHEL") or
-      (rhn_activation_key == "Premium-SAP-RHEL") or
-      (rhn_activation_key == "Developer-RHEL")
+      (rhn_activation_key == "Premium-SAP-RHEL")
     - ansible_facts['distribution_major_version']|int == 8
 
 - name: Enable RHEL 9 SAP repositories

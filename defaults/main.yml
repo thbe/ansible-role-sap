@@ -24,13 +24,17 @@ rhn_manage: false
 rhn_organization_id: 'unset'
 rhn_activation_key: 'unset'
 rhn_pool_id: 'unset'
+rhn_repo_e4s: false
+rhn_repo_eus: false
 
 rhel_repos_8_sap:
   - rhel-8-for-x86_64-sap-netweaver-rpms
-  - rhel-8-for-x86_64-sap-netweaver-e4s-rpms
   - rhel-8-for-x86_64-sap-solutions-rpms
-  - rhel-8-for-x86_64-sap-solutions-e4s-rpms
   - rhel-8-for-x86_64-highavailability-rpms
+
+rhel_repos_8_sap_e4s:
+  - rhel-8-for-x86_64-sap-netweaver-e4s-rpms
+  - rhel-8-for-x86_64-sap-solutions-e4s-rpms
   - rhel-8-for-x86_64-highavailability-e4s-rpms
 
 rhel_repos_8_sap_eus:

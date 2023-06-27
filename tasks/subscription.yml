@@ -7,7 +7,7 @@
     pool: "{{ rhn_pool_id }}"
     syspurpose:
       usage: "Development/Test"
-      role: "Red Hat Enterprise Linux Server"
+      role: "RHEL Server"
       service_level_agreement: "Self-Support"
       sync: true
   when:

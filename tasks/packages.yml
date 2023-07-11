@@ -45,11 +45,10 @@
 - name: Install local SAP packages
   ansible.builtin.dnf:
     name:
-      - "{{ role_directory }}/rpms/sap-common-1.2-0.el8.noarch.rpm"
-      - "{{ role_directory }}/rpms/sap-sapcar-7.22.1115-0.el8.x86_64.rpm"
+      - "{{ role_directory }}/rpms/sap-common-1.2-0.el9.noarch.rpm"
+      - "{{ role_directory }}/rpms/sap-sapcar-7.22.1115-0.el9.x86_64.rpm"
     state: present
   when:
     - sap_custom|bool
     - ansible_facts['os_family'] == "RedHat"
     - ansible_facts['architecture'] == "x86_64"
-    - ansible_facts['distribution_major_version']|int == 8

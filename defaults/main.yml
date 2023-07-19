@@ -19,6 +19,7 @@ sap_anf: false
 sap_dr: false
 
 sap_router: false
+sap_router_manage: false
 
 rhn_manage: false
 rhn_organization_id: 'unset'

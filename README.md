@@ -21,6 +21,7 @@ This role does not have any requirements.
 * **sap_anf** - Enable Azure Netapp (default: false)
 * **sap_dr** - Enable SAP Disaster Recovery (default: false)
 * **sap_router** - Enable SAP Router (default: false)
+* **sap_router_manage** - Manage saproutetab (default: false)
 * **rhn_organization_id** - Organizational ID to register at RHN (default: 'unset')
 * **rhn_activation_key** - activation key to register at RHN (default: 'unset')
 * **rhn_pool_id** - Pool ID to be consumed (default: 'unset')

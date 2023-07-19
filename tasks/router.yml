@@ -2,8 +2,7 @@
 - name: Deploy SAP router packages
   ansible.builtin.dnf:
     name:
-      - "{{ role_directory }}/rpms/sap-common-1.2-0.el8.noarch.rpm"
-      - "{{ role_directory }}/rpms/sap-router-7.53.1110-0.el8.x86_64.rpm"
+      - "{{ role_directory }}/rpms/sap-router-7.53.1110-0.el9.x86_64.rpm"
     state: present
 
 - name: Create PID directory for SAP Router

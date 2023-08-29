@@ -71,6 +71,8 @@ sap_packages_requirement:
   - sudo
   - tcsh
   - tuned
+  - tuned-utils
+  - tuned-utils-systemtap
   - uuidd
   - xfsprogs
   - xorg-x11-xauth

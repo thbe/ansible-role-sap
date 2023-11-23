@@ -8,6 +8,8 @@
 
 - name: Deploy custom SAP firewall configuration
   ansible.builtin.import_tasks: firewall.yml
+  when:
+    - fw_manage|bool
 
 - name: Deploy SAP management scripts
   ansible.builtin.import_tasks: scripts.yml

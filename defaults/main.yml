@@ -2,6 +2,8 @@
 # defaults file for sap
 role_directory: /opt/ansible/sap
 
+fw_manage: true
+
 sap_role_name: "not defined"
 sap_profile: "not defined"
 sap_firewall: "none"

@@ -89,5 +89,4 @@ sap_packages_compatibility:
   - tuned-profiles-sap
   - rhel-system-roles-sap
   - sapconf
-  - vhostmd
   - vm-dump-metrics

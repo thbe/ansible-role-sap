@@ -4,7 +4,6 @@
     state: present
     activationkey: "{{ rhn_activation_key }}"
     org_id: "{{ rhn_organization_id }}"
-    pool: "{{ rhn_pool_id }}"
     syspurpose:
       usage: "Development/Test"
       role: "RHEL Server"
@@ -21,7 +20,6 @@
     state: present
     activationkey: "{{ rhn_activation_key }}"
     org_id: "{{ rhn_organization_id }}"
-    pool: "{{ rhn_pool_id }}"
     syspurpose:
       usage: "Production"
       role: "Red Hat Enterprise Linux Server"
@@ -38,7 +36,6 @@
     state: present
     activationkey: "{{ rhn_activation_key }}"
     org_id: "{{ rhn_organization_id }}"
-    pool: "{{ rhn_pool_id }}"
     syspurpose:
       usage: "Production"
       role: "Not Specified"
@@ -55,7 +52,6 @@
     state: present
     activationkey: "{{ rhn_activation_key }}"
     org_id: "{{ rhn_organization_id }}"
-    pool: "{{ rhn_pool_id }}"
     syspurpose:
       usage: "Production"
       role: "Red Hat Enterprise Linux Server"

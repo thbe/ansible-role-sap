@@ -12,8 +12,7 @@
   when:
     - ansible_facts['distribution'] == "RedHat"
     - rhn_activation_key == "Developer-RHEL"
-    - (rhn_organization_id != "unset") or
-      (rhn_pool_id != "unset")
+    - rhn_organization_id != "unset"
 
 - name: Register in RHN with RHEL standard subscription
   community.general.redhat_subscription:
@@ -28,8 +27,7 @@
   when:
     - ansible_facts['distribution'] == "RedHat"
     - rhn_activation_key == "Standard-RHEL"
-    - (rhn_organization_id != "unset") or
-      (rhn_pool_id != "unset")
+    - rhn_organization_id != "unset"
 
 - name: Register in RHN with RHEL SAP standard subscription
   community.general.redhat_subscription:
@@ -44,8 +42,7 @@
   when:
     - ansible_facts['distribution'] == "RedHat"
     - rhn_activation_key == "Standard-SAP-RHEL"
-    - (rhn_organization_id != "unset") or
-      (rhn_pool_id != "unset")
+    - rhn_organization_id != "unset"
 
 - name: Register in RHN with RHEL SAP premium subscription
   community.general.redhat_subscription:
@@ -60,5 +57,4 @@
   when:
     - ansible_facts['distribution'] == "RedHat"
     - rhn_activation_key == "Premium-SAP-RHEL"
-    - (rhn_organization_id != "unset") or
-      (rhn_pool_id != "unset")
+    - rhn_organization_id != "unset"

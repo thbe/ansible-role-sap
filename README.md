@@ -24,7 +24,6 @@ This role does not have any requirements.
 * **sap_router_manage** - Manage saproutetab (default: false)
 * **rhn_organization_id** - Organizational ID to register at RHN (default: 'unset')
 * **rhn_activation_key** - activation key to register at RHN (default: 'unset')
-* **rhn_pool_id** - Pool ID to be consumed (default: 'unset')
 * **rhn_repo_eus** - Enable EUS repositories (default: false)
 * **rhn_repo_e4s** - Enable E4S repositories (default: false)
 * **rhel_repos_8_sap** - List of RHEL SAP repositories

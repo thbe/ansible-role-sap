@@ -14,7 +14,7 @@ sap_custom: false
 sap_motd: false
 
 sap_ha: false
-sap_ha_stonith: true
+sap_ha_stonith: false
 
 sap_anf: false
 

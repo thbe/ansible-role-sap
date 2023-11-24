@@ -26,7 +26,6 @@ sap_router_manage: false
 rhn_manage: false
 rhn_organization_id: 'unset'
 rhn_activation_key: 'unset'
-rhn_pool_id: 'unset'
 rhn_repo_eus: false
 rhn_repo_e4s: false
 

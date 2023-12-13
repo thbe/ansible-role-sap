@@ -56,6 +56,9 @@
   when:
     - sap_motd|bool
 
+- name: Deploy compatibility libraries
+  ansible.builtin.import_tasks: compatibility.yml
+
 - name: Deploy Pacemaker high-availability
   ansible.builtin.import_tasks: pacemaker.yml
   when:

@@ -1,0 +1,16 @@
+---
+- name: Create directory for local RPMs
+  ansible.builtin.file:
+    path: "/usr/sap/lib"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Create a symbolic link for libstdc++
+  ansible.builtin.file:
+    src: "/opt/rh/SAP/lib64/compat-sap-c++-10.so"
+    dest: "/usr/sap/lib/libstdc++.so.6"
+    owner: root
+    group: root
+    state: link

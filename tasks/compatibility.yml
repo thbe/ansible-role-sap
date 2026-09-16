@@ -13,4 +13,5 @@
     dest: "/usr/sap/lib/libstdc++.so.6"
     owner: root
     group: root
+    force: true
     state: link

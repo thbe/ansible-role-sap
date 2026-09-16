@@ -8,4 +8,4 @@
     dest: /etc/motd.d/sap_information
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"

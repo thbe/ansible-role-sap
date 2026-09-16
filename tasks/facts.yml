@@ -5,7 +5,7 @@
     state: directory
     owner: root
     group: root
-    mode: 0755
+    mode: "0755"
 
 - name: Deploy custom facts
   ansible.builtin.copy:
@@ -13,6 +13,6 @@
     dest: /etc/ansible/facts.d
     owner: root
     group: root
-    mode: 0755
+    mode: "0755"
   with_fileglob:
     - facts.d/*.fact

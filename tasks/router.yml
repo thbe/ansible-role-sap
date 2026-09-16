@@ -11,7 +11,7 @@
     state: directory
     owner: r99adm
     group: r99adm
-    mode: 0755
+    mode: "0755"
 
 - name: Create empty PID file
   ansible.builtin.copy:
@@ -20,7 +20,7 @@
     force: false
     group: r99adm
     owner: r99adm
-    mode: 0644
+    mode: "0644"
 
 - name: Enable and start SAP router service
   ansible.builtin.service:
@@ -42,7 +42,7 @@
       {% endif %}
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
   notify: Restart SAP Router
   when:
     - sap_router_manage|bool

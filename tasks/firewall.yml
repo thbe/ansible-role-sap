@@ -5,7 +5,7 @@
     dest: /etc/firewalld/services
     owner: root
     group: root
-    mode: 0640
+    mode: "0640"
   with_fileglob:
     - firewalld/services/*.xml
   notify: Reload firewalld

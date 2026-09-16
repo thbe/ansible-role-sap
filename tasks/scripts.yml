@@ -5,7 +5,7 @@
     state: directory
     owner: root
     group: root
-    mode: 0755
+    mode: "0755"
 
 - name: Deploy SAP scripts and tools
   ansible.builtin.copy:
@@ -13,6 +13,6 @@
     dest: /opt/sap/bin
     owner: root
     group: root
-    mode: 0755
+    mode: "0755"
   with_fileglob:
     - scripts/*.sh
